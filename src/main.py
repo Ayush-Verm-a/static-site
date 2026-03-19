@@ -1,9 +1,12 @@
 import shutil
 import os
+import sys
 
 from textnode import TextNode, text_to_textnodes, text_node_to_html_node, TextType
 from blocknode import markdown_to_blocks, block_to_block_type, BlockType
 from htmlnode import HTMLNode, ParentNode
+
+basepath = sys.argv[1] if 1 < len(sys.argv) else "/"
 
 def text_to_children(text):
     text_nodes = text_to_textnodes(text)
@@ -84,6 +87,8 @@ def generate_page(from_path, template_path, dest_path):
     title = extract_title(source_file_content)
     dest_file_content = dest_file_content.replace("{{ Content }}", html)
     dest_file_content = dest_file_content.replace("{{ Title }}", title)
+    dest_file_content = dest_file_content.replace('href="/', f'href="{basepath}')
+    dest_file_content = dest_file_content.replace('src="/', f'src="{basepath}')
     os.makedirs(os.path.dirname(dest_path), exist_ok=True)
 
     with open(dest_path, "w") as f:
@@ -109,6 +114,5 @@ def generate_pages_recursive(source_path, dest_path, template_path):
 def main():
     copy_directory("/Users/ayushverma/workspace/bootdotdev/static-site/static", "/Users/ayushverma/workspace/bootdotdev/static-site/public")
     generate_pages_recursive("/Users/ayushverma/workspace/bootdotdev/static-site/content", "/Users/ayushverma/workspace/bootdotdev/static-site/public", "/Users/ayushverma/workspace/bootdotdev/static-site/template.html")
-    # generate_page("/Users/ayushverma/workspace/bootdotdev/static-site/content/index.md", "/Users/ayushverma/workspace/bootdotdev/static-site/template.html", "/Users/ayushverma/workspace/bootdotdev/static-site/public/index.html")
 
 main()

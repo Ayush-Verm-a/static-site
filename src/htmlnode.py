@@ -31,10 +31,10 @@ class LeafNode(HTMLNode):
         if self.tag is None:
             return self.value
         
-        prop_list = ""
+        prop_list = ''
         if self.props is not None:
             for prop in self.props:
-                prop_list += f" {prop}={self.props[prop]}"
+                prop_list += f' {prop}="{self.props[prop]}"'
 
         return f"<{self.tag}{prop_list}>{self.value}</{self.tag}>"
     
