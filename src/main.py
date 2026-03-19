@@ -112,7 +112,7 @@ def generate_pages_recursive(source_path, dest_path, template_path):
 
 
 def main():
-    copy_directory("/Users/ayushverma/workspace/bootdotdev/static-site/static", "/Users/ayushverma/workspace/bootdotdev/static-site/public")
-    generate_pages_recursive("/Users/ayushverma/workspace/bootdotdev/static-site/content", "/Users/ayushverma/workspace/bootdotdev/static-site/public", "/Users/ayushverma/workspace/bootdotdev/static-site/template.html")
+    copy_directory("/Users/ayushverma/workspace/bootdotdev/static-site/static", "/Users/ayushverma/workspace/bootdotdev/static-site/docs")
+    generate_pages_recursive("/Users/ayushverma/workspace/bootdotdev/static-site/content", "/Users/ayushverma/workspace/bootdotdev/static-site/docs", "/Users/ayushverma/workspace/bootdotdev/static-site/template.html")
 
 main()
